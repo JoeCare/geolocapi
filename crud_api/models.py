@@ -5,11 +5,11 @@ from django.db import models
 
 class Author(models.Model):
     # id = models.AutoField(primary_key=True)
-    # first_name = models.CharField(max_length=200)
-    # last_name = models.CharField(max_length=200)
+    first_name = models.CharField(max_length=200, null=True, blank=True)
+    last_name = models.CharField(max_length=200, null=True, blank=True)
     nickname = models.CharField(max_length=200)
-    # birthdate = models.DateField(
-    #     null=True, blank=False, help_text='Date of birth')
+    birthdate = models.DateField(
+        null=True, blank=True, help_text='Date of birth')
     books = models.ManyToManyField('Book', blank=True)
     # @property
     # def general_data(self):
@@ -27,7 +27,7 @@ class Book(models.Model):
     # id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     pages_num = models.IntegerField(blank=True, null=True)
-    cover_image = models.CharField(max_length=300, blank=True, null=True)
+    cover_image = models.URLField(null=True, blank=True)
     publisher = models.ForeignKey('Publisher', on_delete=models.CASCADE)
     authors = models.ManyToManyField('Author', blank=True)
 

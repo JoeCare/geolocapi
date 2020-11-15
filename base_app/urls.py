@@ -20,6 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', admin.site.urls),
     # path('api01/', crud_api.urls),  # path ('api01-authorize/, include('rest_framework.urls))
-    path('api01/', include('crud_api.urls')),
+    path('', include('crud_api.urls')),
     # path('/', include('crud_api.urls')),
 ]

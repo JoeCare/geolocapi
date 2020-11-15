@@ -7,7 +7,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'pages_num', 'cover_image', 'publisher']
+        fields = ['id', 'title', 'pages_num', 'cover_image', 'publisher', 'authors']
         ready_only_fields = ['id']
 
     def get_url(self, obj):
