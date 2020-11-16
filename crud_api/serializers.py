@@ -11,10 +11,6 @@ class BookSerializer(serializers.ModelSerializer):
                   'cover_image', 'publisher', 'authors']
         ready_only_fields = ['id']
 
-    # def get_url(self, obj):
-    #     request = self.context.get('request')
-    #     return obj.get_url_ap(request=request)
-
     # def validate_title(self, _title):
     #     query = Book.objects.filter(title__iexact=_title)
     #     if self.instance:

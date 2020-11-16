@@ -3,15 +3,63 @@ from .models import Book, Publisher, Author
 from .serializers import BookSerializer, PublisherSerializer, AuthorSerializer
 from rest_framework import generics, mixins
 
-
-# from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView,
-# from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, UpdateModelMixin DestroyModelMixin
 # Create your views here.
 
 
 def default(request):
     # return HttpResponse('default api view')
     return redirect('book-list-create')
+
+
+class BookListView(mixins.CreateModelMixin, generics.ListAPIView):
+    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class BookDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'id'
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()
+
+
+class PublisherListView(mixins.CreateModelMixin, generics.ListAPIView):
+    lookup_field = 'id'
+    serializer_class = PublisherSerializer
+    queryset = Publisher.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class PublisherDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'id'
+    serializer_class = PublisherSerializer
+    queryset = Publisher.objects.all()
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+
+class AuthorListView(mixins.CreateModelMixin, generics.ListAPIView):
+    lookup_field = 'id'
+    serializer_class = AuthorSerializer
+    queryset = Author.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+# mixins.RetrieveModelMixin,
+class AuthorDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'id'
+    serializer_class = AuthorSerializer
+    queryset = Author.objects.all()
+
+
 
     # def get_serializer_context(self, *args, **kwargs):
     #     return {"request": self.request}
@@ -45,12 +93,6 @@ def default(request):
 #     serializer_class = UserSerializer
 #     lookup_fields = ['account', 'username']
 
-
-class BookListView(mixins.CreateModelMixin, generics.ListAPIView):
-    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
-    serializer_class = BookSerializer
-    queryset = Book.objects.all()
-
     # def get(self, request, *args, **kwargs):
     #     return self.retrieve(request, *args, **kwargs)
 
@@ -64,48 +106,3 @@ class BookListView(mixins.CreateModelMixin, generics.ListAPIView):
 
     #     serializer = self.get_serializer(queryset, many=True)
     #     return Response(serializer.data)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-class BookDetailedView(generics.RetrieveUpdateDestroyAPIView):
-    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
-    serializer_class = BookSerializer
-    # permission_classes = [IsOwnerOrReadOnly]
-    queryset = Book.objects.all()
-
-
-class PublisherListView(mixins.CreateModelMixin, generics.ListAPIView):
-    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
-    serializer_class = PublisherSerializer
-    queryset = Publisher.objects.all()
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-# mixins.RetrieveModelMixin,
-class PublisherDetailedView(generics.RetrieveUpdateDestroyAPIView):
-    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
-    serializer_class = PublisherSerializer
-    queryset = Publisher.objects.all()
-
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-
-
-class AuthorListView(mixins.CreateModelMixin, generics.ListAPIView):
-    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
-    serializer_class = AuthorSerializer
-    queryset = Author.objects.all()
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-# mixins.RetrieveModelMixin,
-class AuthorDetailedView(generics.RetrieveUpdateDestroyAPIView):
-    lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
-    serializer_class = AuthorSerializer
-    queryset = Author.objects.all()
