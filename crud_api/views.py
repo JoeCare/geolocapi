@@ -51,6 +51,20 @@ class BookListView(mixins.CreateModelMixin, generics.ListAPIView):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
 
+    # def get(self, request, *args, **kwargs):
+    #     return self.retrieve(request, *args, **kwargs)
+
+    # def list(self, request, *args, **kwargs):
+    #     queryset = self.filter_queryset(self.get_queryset())
+
+    #     page = self.paginate_queryset(queryset)
+    #     if page is not None:
+    #         serializer = self.get_serializer(page, many=True)
+    #         return self.get_paginated_response(serializer.data)
+
+    #     serializer = self.get_serializer(queryset, many=True)
+    #     return Response(serializer.data)
+
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
@@ -60,21 +74,6 @@ class BookDetailedView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
     # permission_classes = [IsOwnerOrReadOnly]
     queryset = Book.objects.all()
-
-    # def get_queryset(self):
-    #     return Book.objects.all()
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
 
 
 class PublisherListView(mixins.CreateModelMixin, generics.ListAPIView):
@@ -87,22 +86,13 @@ class PublisherListView(mixins.CreateModelMixin, generics.ListAPIView):
 
 
 # mixins.RetrieveModelMixin,
-class PublisherDetailedView(generics.RetrieveAPIView):
+class PublisherDetailedView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
     serializer_class = PublisherSerializer
     queryset = Publisher.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
     def patch(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
 
 
 class AuthorListView(mixins.CreateModelMixin, generics.ListAPIView):
@@ -114,19 +104,8 @@ class AuthorListView(mixins.CreateModelMixin, generics.ListAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class AuthorDetailedView(generics.RetrieveAPIView):  # mixins.RetrieveModelMixin,
+# mixins.RetrieveModelMixin,
+class AuthorDetailedView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'  # slug, id # url(r'?P<pk>\d+')
     serializer_class = AuthorSerializer
     queryset = Author.objects.all()
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)

@@ -10,8 +10,8 @@ urlpatterns = [
          views.PublisherDetailedView.as_view(), name='publisher-rud'),
     path('api01/publishers/', views.PublisherListView.as_view(),
          name='publisher-list-create'),
-    path('api01/authors/<int:id>', views.AuthorDetailedView.as_view(), name='author-rud'),
-    path('api01/authors/', views.AuthorListView.as_view(), name='author-list-create'),
-    # path(r'^(?P<pk=id>\d+)/$', BookRudView.as_view(), name='post-rud'),
-    # path(r'^(?P<pk>\d+)/$', BookRudView.as_view(), name='post-rud'),  # -oryginal
+    path('api01/authors/<int:id>',
+         views.AuthorDetailedView.as_view(), name='author-rud'),
+    path('api01/authors/', views.AuthorListView.as_view(),
+         name='author-list-create'),
 ]
