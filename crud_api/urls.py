@@ -1,4 +1,5 @@
 from django.urls import path, include
+from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
 urlpatterns = [
@@ -15,3 +16,5 @@ urlpatterns = [
     path('api01/authors/', views.AuthorListView.as_view(),
          name='author-list-create'),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

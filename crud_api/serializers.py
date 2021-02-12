@@ -20,16 +20,18 @@ class BookSerializer(serializers.ModelSerializer):
     #             'Title multiplication. Set unique title.')
     #     return _title
 
+
 class AuthorSerializer(serializers.ModelSerializer):
+    creations = serializers.PrimaryKeyRelatedField(many=True, queryset=Book.objects.all())
 
     class Meta:
         model = Author
         fields = ['id', 'first_name', 'last_name',
-                  'nickname', 'birthdate', 'books']
+                  'nickname', 'birthdate', 'books', 'creations']
         ready_only_fields = ['id']
 
-class PublisherSerializer(serializers.ModelSerializer):
 
+class PublisherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publisher
         fields = ['id', 'name']
