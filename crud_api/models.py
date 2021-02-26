@@ -32,8 +32,8 @@ class Book(models.Model):
     cover_image = models.URLField(null=True, blank=True)
     publisher = models.ForeignKey('Publisher', on_delete=models.CASCADE)
     authors = models.ManyToManyField('Author', blank=True)
-    owner = models.ForeignKey('Author', related_name='creations', on_delete=models.CASCADE)
-    highlighted = models.TextField()
+    # owner = models.ForeignKey('Author', related_name='creations', on_delete=models.CASCADE)
+    # highlighted = models.TextField()
 
     def __str__(self):
         return self.title
