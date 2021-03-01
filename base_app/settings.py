@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crud_api.apps.CrudApiConfig',
+    'loc_api.apps.LocApiConfig',
     'rest_framework',
 ]
 
