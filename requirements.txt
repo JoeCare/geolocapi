@@ -4,3 +4,11 @@ sqlparse==0.4.1
 Django==3.1.3
 djangorestframework==3.12.2
 
+
+djangorestframework-jsonp~=1.0.2
+djangorestframework-jwt~=1.11.0
+Pygments~=2.8.0
+
+requests~=2.25.1
+
+Faker~=6.5.0
