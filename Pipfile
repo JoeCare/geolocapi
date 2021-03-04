@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 factory-boy = "*"
 faker = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
