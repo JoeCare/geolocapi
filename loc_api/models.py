@@ -1,55 +1,39 @@
-import requests, os
 from rest_framework import documentation
 from rest_framework import request, relations, response
 from rest_framework import versioning
 from rest_framework_jsonp import renderers
-from rest_framework_jwt import authentication
+
 from django.db import models
-from pygments.lexers import get_all_lexers
-from pygments.styles import get_all_styles
 
-LEXERS = [item for item in get_all_lexers() if item[1]]
-LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
-STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
-
-
-class Company(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    website = models.URLField(blank=True)
-    street_line_1 = models.CharField(max_length=255)
-    street_line_2 = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=80)
-    state = models.CharField(max_length=80)
-    zipcode = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-
-
-class Snippet(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100, blank=True, default='')
-    code = models.TextField()
-    linenos = models.BooleanField(default=False)
-    language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
-    style = models.CharField(choices=STYLE_CHOICES, default='friendly', max_length=100)
-
-    class Meta:
-        ordering = ['created']
+# class DataLoader(models.Model):
+#     CHOICES = []
+#     performed = models.DateTimeField(auto_now_add=True)
+#     input_ipv4 = models.GenericIPAddressField(default='check', help_text='')
+#     user_input = models.IntegerChoices()
 
 
 class Geolocator(models.Model):
 
-    ip_sample = '134.291.210.155'
-    sample_url = requests.get(
-        f"http://api.ipstack.com/{ip_sample}?access_key="
-        f"{os.getenv('ipstackKey')}"
-        f"&security=1&hostname=1").json()
-
+    # ordered_by = models.ForeignKey('auth.User', related_name='locations',
+    #                           on_delete=models.CASCADE)
     performed = models.DateTimeField(auto_now_add=True)
-    input_ipv4 = models.GenericIPAddressField(default='check', help_text='or:')
+    input_ipv4 = models.GenericIPAddressField(default='check',
+                                              help_text='or:')
+    # input_ip = models.GenericIPAddressField(default='check',
+    #                                           help_text='ipv4, ipv6')
     input_domain = models.URLField(blank=True)
+    collected_data = models.TextField(help_text='Appended geolocalization '
+                                                'data', editable=False,
+                                      null=True)
+    geolocation_base = models.URLField(default='http://api.ipstack.com/')
+    input_domain = models.URLField(blank=True, help_text='')
 
     def __str__(self):
-        return self.__class__()
+        return self.id
+
+    """
+    i teraz kwestia czy jak typo postuje te dane to
+     moze niech one sie tu zapisza oprocz colleted_data - to by bylo jako 
+     Foreign z z modelu np. LocationsData gdzie by sie jakos wywolywal 
+     endpoint do ipshack
+     """
