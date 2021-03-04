@@ -8,7 +8,10 @@ factory-boy = "*"
 faker = "*"
 djangorestframework-simplejwt = "*"
 drf-yasg = "*"
-
+djangorestframework-jsonp = "*"
+Django= "*"
+djangorestframework = "*"
+requests= "*"
 [dev-packages]
 
 [requires]

@@ -2,7 +2,6 @@ from rest_framework import documentation
 from rest_framework import request, relations, response
 from rest_framework import versioning
 from rest_framework_jsonp import renderers
-
 from django.db import models
 
 # class DataLoader(models.Model):
@@ -21,7 +20,6 @@ class Geolocator(models.Model):
                                               help_text='or:')
     # input_ip = models.GenericIPAddressField(default='check',
     #                                           help_text='ipv4, ipv6')
-    input_domain = models.URLField(blank=True)
     collected_data = models.TextField(help_text='Appended geolocalization '
                                                 'data', editable=False,
                                       null=True)

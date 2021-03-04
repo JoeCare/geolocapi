@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f18c34fd07586c685689b3512bd8cfc319e826cfea77b1c07968417d8c3cf569"
+            "sha256": "397b189527b54280ccc6ece88a80e6edb1da256903882a654fd937215180d5c4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -58,7 +58,7 @@
                 "sha256:32ce792ee9b6a0cbbec340123e229ac9f765dff8c2a4ae9247a14b2ba3a365a7",
                 "sha256:baf099db36ad31f970775d0be5587cc58a6256a6771a44eb795b554d45f211b8"
             ],
-            "markers": "python_version >= '3.6'",
+            "index": "pypi",
             "version": "==3.1.7"
         },
         "djangorestframework": {
@@ -66,8 +66,16 @@
                 "sha256:0209bafcb7b5010fdfec784034f059d512256424de2a0f084cb82b096d6dd6a7",
                 "sha256:0898182b4737a7b584a2c73735d89816343369f259fea932d90dc78e35d8ac33"
             ],
-            "markers": "python_version >= '3.5'",
+            "index": "pypi",
             "version": "==3.12.2"
+        },
+        "djangorestframework-jsonp": {
+            "hashes": [
+                "sha256:053c8dc58ff5c2f931834d6ec6568c308474912db2129af47c0683506e01b597",
+                "sha256:fff4584e1a08f3c92f220eefb6f25907a54cc8fe39214ae058c572530f5c9277"
+            ],
+            "index": "pypi",
+            "version": "==1.0.2"
         },
         "djangorestframework-simplejwt": {
             "hashes": [
@@ -234,7 +242,7 @@
                 "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
                 "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
+            "index": "pypi",
             "version": "==2.25.1"
         },
         "ruamel.yaml": {

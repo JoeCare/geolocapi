@@ -8,8 +8,8 @@ from rest_framework.decorators import api_view
 from rest_framework.mixins import (
     CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 )
-from .models import Company, Geolocator, Snippet
-from .serializers import (UserSerializer, CompanySerializer, MainGeoSerializer, OutputGeoSerializer)
+from .models import Geolocator
+from .serializers import (UserSerializer,  MainGeoSerializer, OutputGeoSerializer)
 from rest_framework_simplejwt.authentication import JWTAuthentication as jwt
 
 
@@ -19,8 +19,8 @@ class CompanyViewSet(viewsets.GenericViewSet,  # generic view functionality
                      UpdateModelMixin,  # handles PUTs and PATCH
                      ListModelMixin):  # handles GETs for many Companies
 
-	queryset = Company.objects.all()
-	serializer_class = CompanySerializer
+	# queryset = Company.objects.all()
+	# serializer_class = CompanySerializer
 
 
 @api_view(['POST', 'GET'])
@@ -99,10 +99,10 @@ class LocationsModelViewSet(viewsets.ModelViewSet):
 	serializer_class = MainGeoSerializer
 	queryset = Geolocator.objects.all()
 
-	if MainGeoSerializer has
-
+	# if MainGeoSerializer has
 
 	# def get_serializer_context(self):
+
 	def get_permissions(self):
 		"""Sets list of permissions needed on this view's actions"""
 
